@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Bona+Nova+SC:ital,wght@0,400;0,700;1,400&family=Righteous&display=swap');
+
+p , a, span , ul, li{
+    font-family: "Bona Nova SC", serif;
+}
+h1,h2,h3,h4,h5,h6{
+    font-family: "Righteous", serif;
+}
+body{
+    scroll-behavior: smooth;
+}
+.outlet-style{
+    padding-top: 110px;
+    background-image: url(./assets/imgs/nbg.avif);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.swiper-slide{
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    height: 90vh !important;
+}
+#home{
+
+    margin-top: -50px;
+}
+.main-titel{
+    background-image: url(./assets/imgs/titel-bg.jpg);
+    background-clip: text;
+    background-position: center;
+    -webkit-text-fill-color: transparent;
+    font-family: "Righteous", serif;
+
+}
+
+nav a{
+    width: 80px;
+    height: 80px;
+   background-image: url(./assets/imgs/redstrar.jpeg);
+   background-position: center;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   border-radius: 50%;
+   transition: .4s;
+}
+nav a:hover{
+    background-image: url(./assets/imgs/sun.jpg);
+}
+.active{
+    background-image: url(./assets/imgs/sun.jpg);
+    box-shadow: -1px 2px 38px 10px rgba(243,93,6,1);
+    border-radius: 50%;
+}
+
+@media all and (max-width: 767px){
+    nav a{
+        width: 100%;
+        height: 100%;
+        border-radius: 5px;
+     }
+   
+    nav li{
+        margin-bottom: 15px;
+    }
+    .active{
+        border-radius: 5px;   
+    }
+}
+
+.titel{
+    background-image: url(./assets/imgs/titel-bg.jpg);
+    width: fit-content;
+    padding: 16px;
+    border-radius: 50px;
+    margin: auto;
+    background-position: 40% 40%;
+    background-attachment: fixed;
+}
+
+footer{
+    background-color: #111827;
+    color: white;
+}
+#register{
+    background-image: url(./assets/imgs/blackHole.png);
+background-position: center;
+}
+
+table{
+    background-image: url(./assets/imgs/redstrar.jpeg);
+
+    background-size: contain;
+    background-attachment: fixed;
+    font-size: 18px;
+    font-weight: 700;
+    color: white !important
+    
+    ;}
+
+    .swal-footer{
+        text-align: center !important;
+    }
+    .swal-button{
+        background: #1AA3E1;
+    }
+    
+    .swal-text{
+        font-size: 18px;
+        font-weight: bold;
+        color: rgb(110, 231 ,183,);
+    }

@@ -1,0 +1,36 @@
+.swiper {
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+  #home .swiper{
+    padding-top: 22px;
+  }
+  
+  .swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 300px;
+    height: 300px;
+  }
+  
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+  }
+
+  #slider .swiper-slide{
+    height: fit-content !important;
+  }
+
+  #slider .swiper {
+    width: 100%;
+    padding: 10px 0 !important;
+  }
+
+  #slider .swiper-slide img {
+    display: inline !important;
+    width: fit-content !important;
+}
+
+
