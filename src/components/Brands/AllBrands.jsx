@@ -27,34 +27,33 @@ export default function AllBrands() {
   }
 
   return (
-    <Zoom delay={100} duration={1500} className="">
+    <div className="">
       <div className="container mx-auto p-6">
         <div className="content grid grid-cols-2 lg:grid-cols-5 sm:grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-8">
           {allBrandsData?.map((brand) => {
             return (
-              <div
-                key={brand._id}
-                className="block rounded-lg group relative p-4 shadow-sm bg-white shadow-stone-100"
-              >
-                <div className="img">
-                  <img
-                    alt={brand.name}
-                    src={brand.image}
-                    className="h-full w-full rounded-md object-cover"
-                  />
+              <Zoom delay={100} duration={1500} key={brand._id}>
+                <div className="block rounded-lg group relative p-4 shadow-sm bg-white shadow-stone-100">
+                  <div className="img">
+                    <img
+                      alt={brand.name}
+                      src={brand.image}
+                      className="h-full w-full rounded-md object-cover"
+                    />
+                  </div>
+                  <div className="overlay  absolute w-full h-full top-0 left-0 rounded-lg z-20 bg-gray-500 opacity-30"></div>
+                  <div className="overlay  absolute w-full h-full top-0 left-0 rounded-lg z-30 opacity-0 group-hover:opacity-100 duration-300 mt-12">
+                    <SeeMoreButton
+                      id={brand._id}
+                      newPath={`brandProducts/${brand._id}`}
+                    />
+                  </div>
                 </div>
-                <div className="overlay  absolute w-full h-full top-0 left-0 rounded-lg z-20 bg-gray-500 opacity-30"></div>
-                <div className="overlay  absolute w-full h-full top-0 left-0 rounded-lg z-30 opacity-0 group-hover:opacity-100 duration-300 mt-12">
-                  <SeeMoreButton
-                    id={brand._id}
-                    newPath={`brandProducts/${brand._id}`}
-                  />
-                </div>
-              </div>
+              </Zoom>
             );
           })}
         </div>
       </div>
-    </Zoom>
+    </div>
   );
 }
