@@ -33,10 +33,10 @@ export default function LandingSlider() {
         className="mySwiper"
       >
         <SwiperSlide className="">
-          <img src={img1} alt="approch" className="w-full h-full" />
+          <img src={img2} alt="crash-start" className="w-full h-full" />
         </SwiperSlide>
         <SwiperSlide className="">
-          <img src={img2} alt="crash-start" className="w-full h-full" />
+          <img src={img1} alt="approch" className="w-full h-full" />
         </SwiperSlide>
       </Swiper>
     </>
