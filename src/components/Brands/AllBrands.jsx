@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import SeeMoreButton from "../SeeMoreButton/SeeMoreButton";
 import NotFound404 from "../NotFound404/NotFound404";
+import { Zoom } from "react-awesome-reveal";
 
 export default function AllBrands() {
   function getAllBrabds() {
@@ -26,7 +27,7 @@ export default function AllBrands() {
   }
 
   return (
-    <div className="">
+    <Zoom delay={100} duration={1500 className="">
       <div className="container mx-auto p-6">
         <div className="content grid grid-cols-2 lg:grid-cols-5 sm:grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-8">
           {allBrandsData?.map((brand) => {
@@ -54,6 +55,6 @@ export default function AllBrands() {
           })}
         </div>
       </div>
-    </div>
+    </Zoom>
   );
 }
