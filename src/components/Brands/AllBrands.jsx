@@ -27,7 +27,7 @@ export default function AllBrands() {
   }
 
   return (
-    <Zoom delay={100} duration={1500 className="">
+    <Zoom delay={100} duration={1500} className="">
       <div className="container mx-auto p-6">
         <div className="content grid grid-cols-2 lg:grid-cols-5 sm:grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-8">
           {allBrandsData?.map((brand) => {
