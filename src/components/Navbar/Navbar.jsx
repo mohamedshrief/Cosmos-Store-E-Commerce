@@ -1,10 +1,15 @@
 import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthenticationContext } from "../../assets/contexts/Authentication/Authentication";
+import { cartContext } from "../../assets/contexts/CartContext/CartContext";
+import { wishContext } from "../../assets/contexts/WishContext/WishContext";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { token, settoken } = useContext(AuthenticationContext);
+  const { numberOfCartItems } = useContext(cartContext);
+  const { noOfItemesInWishlishArray } = useContext(wishContext);
+
   return (
     <nav className="bg-gray-900 dark:bg-gray-900 fixed w-full z-50 top-0 start-0">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -38,19 +43,48 @@ export default function Navbar() {
         </span>
 
         <div className="flex justify-center items-center gap-1 md:gap-2 md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-          <ul
-            id="social-media-icons-list"
-            className="flex justify-center items-center gap-1 md:gap-2"
-          >
-            <li className="h-6 w-6 text-sm mt-3 md:mt-0 md:h-8 md:w-8 md:text-md flex justify-center items-center rounded-full border border-stone-300  hover:border-cyan-400 duration-300 group ">
-              <i className="fa fa-brands fa-facebook-f text-stone-300 group-hover:text-cyan-400"></i>
-            </li>
-            <li className="h-6 w-6 text-sm mt-3 md:mt-0 md:h-8 md:w-8 md:text-md flex justify-center items-center rounded-full border border-stone-300  hover:border-cyan-400 duration-300 group ">
-              <i className="fa fa-brands fa-linkedin-in text-stone-300 group-hover:text-cyan-400"></i>
-            </li>
-          </ul>
+          {!token ? (
+            <ul
+              id="social-media-icons-list"
+              className="flex justify-center items-center gap-1 md:gap-2"
+            >
+              <li className="h-6 w-6 text-sm mt-3 md:mt-0 md:h-8 md:w-8 md:text-md flex justify-center items-center rounded-full border border-stone-300  hover:border-cyan-400 duration-300 group ">
+                <i className="fa fa-brands fa-facebook-f text-stone-300 group-hover:text-cyan-400"></i>
+              </li>
+              <li className="h-6 w-6 text-sm mt-3 md:mt-0 md:h-8 md:w-8 md:text-md flex justify-center items-center rounded-full border border-stone-300  hover:border-cyan-400 duration-300 group ">
+                <i className="fa fa-brands fa-linkedin-in text-stone-300 group-hover:text-cyan-400"></i>
+              </li>
+            </ul>
+          ) : (
+            <ul
+              id="user-icons-list"
+              className="flex justify-center items-center gap-1 md:gap-2"
+            >
+              <li className="h-6 w-6 relative text-sm mt-3 md:mt-0 md:h-8 md:w-8 md:text-md flex justify-center items-center rounded-full border border-text-green-500  hover:border-green-300 duration-300 group ">
+                <span className="absolute -top-[12px] right-[6px] text-[12px] text-stone-200 w-4 h-4 flex justify-center items-center bg-green-500 rounded-full">
+                  {numberOfCartItems}
+                </span>
+                <Link
+                  to={"/cart"}
+                  id="carticon"
+                  className="fa-solid fa-cart-shopping text-green-500 group-hover:text-green-300"
+                ></Link>
+              </li>
+              <li className="relative h-6 w-6 text-sm mt-3 md:mt-0 md:h-8 md:w-8 md:text-md flex justify-center items-center rounded-full border border-red-300  hover:border-red-500 duration-300 group ">
+                <Link
+                  to={"/wish"}
+                  id="wishicon"
+                  className="fa-solid fa-heart text-red-300 group-hover:text-red-500"
+                ></Link>
+                <span className="absolute -top-[12px] right-[6px] text-[12px] text-stone-200 w-4 h-4 flex justify-center items-center bg-green-500 rounded-full">
+                  {noOfItemesInWishlishArray}
+                </span>
+              </li>
+            </ul>
+          )}
           {!token ? (
             <Link
+              to={"/login"}
               type="button"
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-xl text-lg font-bold px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >

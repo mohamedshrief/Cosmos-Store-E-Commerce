@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import StarRating from "../StarRating/StarRating";
 import { Fade, Flip, Rotate, Slide } from "react-awesome-reveal";
 
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -20,11 +20,17 @@ import "../../App.css";
 import { EffectFlip, Pagination, Navigation } from "swiper/modules";
 import SolarSystemSpinner from "../SolarSystemSpinner/SolarSystemSpinner";
 import NotFound404 from "../NotFound404/NotFound404";
+import { cartContext } from "../../assets/contexts/CartContext/CartContext";
+import { AuthenticationContext } from "../../assets/contexts/Authentication/Authentication";
+import { wishContext } from "../../assets/contexts/WishContext/WishContext";
 
 export default function ProductDetails() {
+  const { handleAddTowish } = useContext(wishContext);
   const { id } = useParams();
+  const { token } = useContext(AuthenticationContext);
+  const navigate = useNavigate();
+  const { handleAddToCart } = useContext(cartContext);
   //   ----------------------------------------------------------------------------
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
   //   ----------------------------------------------------------------------------
   // const id = "6408e98e6406cd15828e8f30";
   function getProductDetails() {
@@ -41,7 +47,7 @@ export default function ProductDetails() {
   }
 
   if (isError) {
-    isError && <NotFound404 />;
+    return <NotFound404 />;
   }
   return (
     <div id="ProductDetails">
@@ -82,68 +88,6 @@ export default function ProductDetails() {
                     <StarRating rating={ProductDetailsData.ratingsAverage} />
                   </div>
                   <div className="quantity-price flex gap-8 items-center justify-center">
-                    <span>
-                      <form className="max-w-xs mx-auto">
-                        <div className="relative flex items-center max-w-[8rem]">
-                          <button
-                            type="button"
-                            id="decrement-button"
-                            data-input-counter-decrement="quantity-input"
-                            className="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
-                          >
-                            <svg
-                              className="w-3 h-3 text-gray-900 dark:text-white"
-                              aria-hidden="true"
-                              xmlns="http://www.w3.org/2000/svg"
-                              fill="none"
-                              viewBox="0 0 18 2"
-                            >
-                              <path
-                                stroke="currentColor"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M1 1h16"
-                              />
-                            </svg>
-                          </button>
-                          <input
-                            type="text"
-                            id="quantity-input"
-                            data-input-counter
-                            data-input-counter-min={1}
-                            data-input-counter-max={50}
-                            aria-describedby="helper-text-explanation"
-                            className="bg-gray-50 border-x-0 border-gray-300 h-11 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder={999}
-                            defaultValue={5}
-                            required
-                          />
-                          <button
-                            type="button"
-                            id="increment-button"
-                            data-input-counter-increment="quantity-input"
-                            className="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
-                          >
-                            <svg
-                              className="w-3 h-3 text-gray-900 dark:text-white"
-                              aria-hidden="true"
-                              xmlns="http://www.w3.org/2000/svg"
-                              fill="none"
-                              viewBox="0 0 18 18"
-                            >
-                              <path
-                                stroke="currentColor"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M9 1v16M1 9h16"
-                              />
-                            </svg>
-                          </button>
-                        </div>
-                      </form>
-                    </span>
                     <span className="price text-xl my-5">
                       {" "}
                       price :{" "}
@@ -154,19 +98,32 @@ export default function ProductDetails() {
                     </span>
                   </div>
                   <div className="btns mt-8 gap-y-5 w-full flex justify-center items-center flex-wrap">
-                    <button className="relative w-60 inline-flex items-center justify-center p-0.5 me-2 overflow-hidden text-sm font-medium  text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
+                    <button
+                      onClick={() => {
+                        if (token) {
+                          handleAddToCart(id);
+                        } else {
+                          navigate("/login");
+                        }
+                      }}
+                      className="relative w-60 inline-flex items-center justify-center p-0.5 me-2 overflow-hidden text-sm font-medium  text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
+                    >
                       <span className="relative w-full px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent text-xl group-hover:dark:bg-transparent">
                         Add to Cart{" "}
                         <i className="fa-solid fa-cart-plus text-xl text-emerald-800"></i>
                       </span>
                     </button>
                     <button
+                      onClick={() => {
+                        handleAddTowish(id);
+                      }}
                       type="button"
                       className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-md dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2"
                     >
                       <i className="fa-regular fa-heart text-xl"></i>
                     </button>
                     <button
+                      onClick={() => navigate("/allorders")}
                       type="button"
                       className="w-60 flex justify-center items-center text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 text-xl font-medium rounded-lg px-5 py-2.5 text-center me-2 "
                     >

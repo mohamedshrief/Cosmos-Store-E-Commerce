@@ -1,59 +1,12 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Zoom } from "react-awesome-reveal";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { AuthenticationContext } from "../../assets/contexts/Authentication/Authentication";
-import axios from "axios";
-import swal from "sweetalert";
-
-export let previosPathName = "";
+import { Link } from "react-router-dom";
+import { cartContext } from "../../assets/contexts/CartContext/CartContext";
+import { wishContext } from "../../assets/contexts/WishContext/WishContext";
 
 export default function ProductCard({ product }) {
-  const location = useLocation();
-  previosPathName = location;
-  const { token } = useContext(AuthenticationContext);
-  const navigate = useNavigate();
-  function showSuccessAlert(message) {
-    swal({
-      title: "Success!",
-      text: message,
-      icon: "success",
-      button: "OK",
-    });
-  }
-  function showErrorAlert(message) {
-    swal({
-      title: "Error!",
-      text: message,
-      icon: "error",
-      button: "OK",
-    });
-  }
-  function handleAddToCart() {
-    if (token) {
-      axios
-        .post(
-          "https://ecommerce.routemisr.com/api/v1/cart",
-          {
-            productId: product._id,
-          },
-          {
-            headers: {
-              token: token,
-            },
-          }
-        )
-        .then((responce) => {
-          showSuccessAlert(responce.data.data.message);
-          setTimeout(() => {
-            navigate("/cart");
-          }, 2000);
-        })
-        .catch((error) => {
-          console.log(error);
-          showErrorAlert("This product doesn't exist any more");
-        });
-    } else navigate("/login");
-  }
+  const { handleAddToCart } = useContext(cartContext);
+  const { handleAddTowish } = useContext(wishContext);
 
   return (
     <Zoom delay={100} duration={1500}>
@@ -70,14 +23,19 @@ export default function ProductCard({ product }) {
           <div className="icons-overlay absolute -right-4 top-20 bg-[rgba(0,0,0,.3)] flex flex-col items-center justify-between opacity-0 group-hover:opacity-100 group-hover:right-1 duration-300 h-[150px] w-[50px] p-5 rounded-xl">
             <i
               onClick={() => {
-                handleAddToCart();
+                handleAddToCart(product._id);
               }}
               className="fa-solid fa-cart-shopping text-slate-100 hover:text-green-600 duration-300"
             ></i>
             <Link to={`/productDetails/${product._id}`}>
               <i className="fa-solid fa-magnifying-glass-plus text-slate-100 hover:text-[#e9e170] duration-300"></i>
             </Link>
-            <i className="fa-solid fa-heart text-slate-100 hover:text-red-500 duration-300"></i>
+            <i
+              onClick={() => {
+                handleAddTowish(product._id);
+              }}
+              className="fa-solid fa-heart text-slate-100 hover:text-red-500 duration-300"
+            ></i>
           </div>
         </div>
 

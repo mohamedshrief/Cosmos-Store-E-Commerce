@@ -75,7 +75,6 @@ export default function BrandProducts() {
           >
             <p>No products found in this Brand.</p>
           </motion.div>
-          {/* <p>No products found in this category.</p> */}
         </div>
       );
     }

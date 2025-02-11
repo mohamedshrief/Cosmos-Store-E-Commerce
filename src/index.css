@@ -55,6 +55,20 @@ nav a{
 nav a:hover{
     background-image: url(./assets/imgs/sun.jpg);
 }
+#carticon, #wishicon {
+   
+    background-image:  none;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+/* تغيير الصورة عند التحويم (hover) لجميع الروابط داخل الـ nav عدا #carticon */
+#carticon {
+    background-image: none;
+}
 .active{
     background-image: url(./assets/imgs/sun.jpg);
     box-shadow: -1px 2px 38px 10px rgba(243,93,6,1);
@@ -98,7 +112,7 @@ background-position: center;
 table{
     background-image: url(./assets/imgs/redstrar.jpeg);
 
-    background-size: contain;
+    background-size: cover;
     background-attachment: fixed;
     font-size: 18px;
     font-weight: 700;
