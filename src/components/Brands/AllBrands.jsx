@@ -32,7 +32,7 @@ export default function AllBrands() {
         <div className="content grid grid-cols-2 lg:grid-cols-5 sm:grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-8">
           {allBrandsData?.map((brand) => {
             return (
-              <Zoom delay={100} duration={1500} key={brand._id}>
+              <Zoom delay={100} duration={1500} key={brand._id} triggerOnce>
                 <div className="block rounded-lg group relative p-4 shadow-sm bg-white shadow-stone-100">
                   <div className="img">
                     <img
