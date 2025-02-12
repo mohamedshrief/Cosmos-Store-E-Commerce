@@ -45,7 +45,7 @@ export default function AllBrands() {
                   <div className="overlay  absolute w-full h-full top-0 left-0 rounded-lg z-30 opacity-0 group-hover:opacity-100 duration-300 mt-12">
                     <SeeMoreButton
                       id={brand._id}
-                      newPath={`brandProducts/${brand._id}`}
+                      newPath={`/brandProducts/${brand._id}`}
                     />
                   </div>
                 </div>

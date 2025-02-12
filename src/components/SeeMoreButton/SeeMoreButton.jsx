@@ -3,18 +3,18 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { categoryContext } from "../../CategoryContext/CategoryContext";
 
-const SeeMoreButton = ({ id, newPath }) => {
+const SeeMoreButton = ({ id, newPath = "" }) => {
   const { handleChosenCategoryId } = useContext(categoryContext);
   //   console.log(id);
   console.log("route", newPath);
   return (
-    <Link to={`/${newPath}`}>
+    <Link to={`${newPath}`}>
       <motion.button
         style={{
           padding: "10px 10px",
           fontSize: "16px",
           color: "white",
-          backgroundColor: "#251A3A",
+          backgroundColor: "#523092",
           border: "none",
           borderRadius: "5px",
           cursor: "pointer",
@@ -27,7 +27,7 @@ const SeeMoreButton = ({ id, newPath }) => {
         }}
         animate={{
           x: "-50%", // توسيط أفقي باستخدام translateX
-          y: [0, -3, 0], // حركة لأعلى ولأسفل
+          y: [0, -5, 0], // حركة لأعلى ولأسفل
         }}
         transition={{
           y: {

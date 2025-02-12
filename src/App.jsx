@@ -21,6 +21,7 @@ import WishContextProvider from "./assets/contexts/WishContext/WishContext";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import AuthProtectedRoute from "./components/AuthProtectedRoute/AuthProtectedRoute";
 import Makeorder from "./components/MakeOrder/Makeorder";
+import CategoryProductsDisplay from "./components/CategoryProductsDisplay/CategoryProductsDisplay";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: "home", element: <Home /> },
+      {
+        path: "categoryProductsDisplay/:id",
+        element: <CategoryProductsDisplay />,
+      },
       {
         path: "register",
         element: (

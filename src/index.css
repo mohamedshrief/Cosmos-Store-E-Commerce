@@ -13,9 +13,10 @@ h1,h2,h3,h4,h5,h6{
 body{
     scroll-behavior: smooth;
 }
+
 .outlet-style{
     padding-top: 110px;
-    background-image: url(./assets/imgs/nbg.avif);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(./assets/imgs/outletbg.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -43,17 +44,22 @@ body{
 
 nav a{
     width: 80px;
-    height: 80px;
-   background-image: url(./assets/imgs/redstrar.jpeg);
+    height: 50px;
+   background-image: url(./assets/imgs/uranos.jpg);
    background-position: center;
    display: flex;
    justify-content: center;
    align-items: center;
-   border-radius: 50%;
+   border-radius: 20px;
    transition: .4s;
+   font-size: 17px;
+   color:black;
+   font-weight: bold;
 }
 nav a:hover{
-    background-image: url(./assets/imgs/sun.jpg);
+    background-image: url(./assets/imgs/earth.webp);
+    color: white;
+   /* color: #523092 */
 }
 #carticon, #wishicon {
    
@@ -70,9 +76,13 @@ nav a:hover{
     background-image: none;
 }
 .active{
-    background-image: url(./assets/imgs/sun.jpg);
-    box-shadow: -1px 2px 38px 10px rgba(243,93,6,1);
-    border-radius: 50%;
+    
+    background-image:  url(./assets/imgs/earth.webp) ;
+    background-position:  50% 50%;
+    box-shadow: -1px 2px 38px 15px rgba(243,93,6,1);
+    color: white;
+    font-weight: 900;
+    font-size: 17px;
 }
 
 @media all and (max-width: 767px){

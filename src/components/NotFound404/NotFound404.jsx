@@ -4,10 +4,7 @@ import "./NotFound404.css";
 
 export default function NotFound404() {
   return (
-    <div
-      id="not-found"
-      className="h-[90vh] flex justify-center items-center py-10"
-    >
+    <div id="not-found" className="h-[100vh] flex justify-center items-center ">
       {" "}
       <div className="text-center flex justify-center items-center text-white font-bold text-4xl py-8 col-span-2 md:col-span-3 lg:col-span-5">
         <motion.div

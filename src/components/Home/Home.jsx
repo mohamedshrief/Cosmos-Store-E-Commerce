@@ -93,7 +93,10 @@ export default function Home() {
                         src={category.image}
                         className="group-hover:scale-[1.1] duration-300"
                       />
-                      <SeeMoreButton id={category._id} newPath={"categories"} />
+                      <SeeMoreButton
+                        id={category._id}
+                        newPath={`/categoryProductsDisplay/${category._id}`}
+                      />
                     </SwiperSlide>
                   </>
                 );

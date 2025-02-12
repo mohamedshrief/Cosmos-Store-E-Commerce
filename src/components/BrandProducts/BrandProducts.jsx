@@ -29,9 +29,9 @@ export default function BrandProducts() {
 
   const chosenBrandData = brandRes.data?.data.data;
 
-  const filteredBrandProducts = allProductsData?.filter(
-    (product) => product.brand && product.brand.name === chosenBrandData.name
-  );
+  const filteredBrandProducts = allProductsData?.filter((product) => {
+    return product.brand && product.brand.name === chosenBrandData.name;
+  });
   if (brandRes.isLoading || allProductsRes.isLoading) {
     return <SolarSystemSpinner />;
   }
@@ -42,13 +42,15 @@ export default function BrandProducts() {
   if (!brandRes.data?.data.data || !allProductsRes.data?.data.data) {
     return <SolarSystemSpinner />;
   }
-  if (filteredBrandProducts) {
-    if (
-      !brandRes.isLoading &&
-      !allProductsRes.isLoading &&
-      filteredBrandProducts.length === 0
-    ) {
-      return (
+  return (
+    <>
+      {filteredBrandProducts ? (
+        <div className="category-content grid gap-6 p-6 grid-cols-1 lg:grid-cols-5 sm:grid-cols-2 md:grid-cols-3">
+          {filteredBrandProducts?.map((product) => {
+            return <ProductCard key={product._id} product={product} />;
+          })}
+        </div>
+      ) : (
         <div className="text-center h-[500px] flex justify-center items-center text-white font-bold text-4xl py-8 col-span-2 md:col-span-3 lg:col-span-5">
           <motion.div
             initial={{
@@ -76,16 +78,7 @@ export default function BrandProducts() {
             <p>No products found in this Brand.</p>
           </motion.div>
         </div>
-      );
-    }
-    return (
-      <>
-        <div className="category-content grid gap-6 p-6 grid-cols-2 lg:grid-cols-5 sm:grid-cols-2 md:grid-cols-3">
-          {filteredBrandProducts.map((product) => {
-            return <ProductCard key={product._id} product={product} />;
-          })}
-        </div>
-      </>
-    );
-  }
+      )}
+    </>
+  );
 }

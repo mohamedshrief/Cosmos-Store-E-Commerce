@@ -93,7 +93,7 @@ export default function Cart() {
                   className=" border-b border-cyan-200 text-stone-200 text-center"
                 >
                   <td className="p-4">
-                    <Zoom delay={100} duration={1500}>
+                    <Zoom delay={100} duration={1500} triggerOnce>
                       <img
                         src={product.product.imageCover}
                         className="w-16 md:w-32 max-w-full max-h-full"
@@ -102,12 +102,13 @@ export default function Cart() {
                     </Zoom>
                   </td>
                   <td className="px-6 py-4 font-semibold text-amber-300 text-xl">
-                    <Zoom delay={100} duration={1500}>
+                    <Zoom delay={100} duration={1500} triggerOnce>
                       {product.product.title}
                     </Zoom>
                   </td>
                   <td className="px-6 py-4">
                     <Zoom
+                      triggerOnce
                       delay={100}
                       duration={1500}
                       className="flex justify-center border-none outline-none"
@@ -180,13 +181,13 @@ export default function Cart() {
                     </Zoom>
                   </td>
                   <td className="px-6 py-4 font-semibold text-amber-300 text-xl">
-                    <Zoom delay={100} duration={1500}>
+                    <Zoom delay={100} duration={1500} triggerOnce>
                       {product.price}
                     </Zoom>
                   </td>
                   <td className="px-6 py-4">
                     <span className="font-medium text-red-600 hover:underline">
-                      <Zoom delay={100} duration={1500}>
+                      <Zoom delay={100} duration={1500} triggerOnce>
                         <div
                           onClick={() => {
                             handelRemoveSpecificCartItem(product.product.id);

@@ -68,8 +68,8 @@ export default function Login() {
         .min(8, "Minmum length is 8")
         .max(20, "Maximum length is 20")
         .matches(
-          /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,20}$/,
-          "Password must include at least [ capital letter - small letter - number - one of these (!@#$%^&*) ]"
+          /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).+$/,
+          "Password must include at least [ capital letter - small letter - number ]"
         ),
     }),
     validateOnChange: true,

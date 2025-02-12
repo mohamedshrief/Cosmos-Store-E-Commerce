@@ -70,9 +70,11 @@ export default function CartContextProvider({ children }) {
       })
       .catch((error) => {
         console.log(error);
-        showErrorAlert("This product doesn't exist any more");
+        console.log("error", error);
+        showErrorAlert(error.response.data.message);
         return false;
       });
+    return getCartDataBoolResponse;
     // } else navigate("/login");
   }
 

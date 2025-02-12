@@ -7,7 +7,7 @@ export default function Layout() {
   return (
     <>
       <Navbar />
-      <div className="outlet-style min-h-[80vh]">
+      <div className="outlet-style relative min-h-[80vh]">
         <Outlet />
       </div>
       <Footer />

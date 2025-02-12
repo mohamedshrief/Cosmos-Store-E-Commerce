@@ -60,6 +60,7 @@ export default function ProductDetails() {
                 // direction="left"
                 delay={300}
                 duration={1400}
+                triggerOnce
               >
                 <div className="img p-12">
                   <img
@@ -72,6 +73,7 @@ export default function ProductDetails() {
               </Fade>
 
               <Fade
+                triggerOnce
                 // direction="right"
                 delay={300}
                 duration={1400}
@@ -103,7 +105,10 @@ export default function ProductDetails() {
                         if (token) {
                           handleAddToCart(id);
                         } else {
-                          navigate("/login");
+                          handleAddToCart(id);
+                          setTimeout(() => {
+                            navigate("/login");
+                          }, 2000);
                         }
                       }}
                       className="relative w-60 inline-flex items-center justify-center p-0.5 me-2 overflow-hidden text-sm font-medium  text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
@@ -186,6 +191,7 @@ export default function ProductDetails() {
               </div>
               <div></div>
               <Fade
+                triggerOnce
                 direction="right"
                 delay={300}
                 duration={1400}
