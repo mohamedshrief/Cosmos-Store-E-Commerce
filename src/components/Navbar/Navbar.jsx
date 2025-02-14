@@ -42,7 +42,7 @@ export default function Navbar() {
           </button>
         </span>
 
-        <div className="flex justify-center items-center gap-1 md:gap-2 md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+        <div className="flex justify-center items-center gap-0 md:gap-2 md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
           {!token ? (
             <ul
               id="social-media-icons-list"
